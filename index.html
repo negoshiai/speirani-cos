@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speirani & Co S.r.l. - Dal 1969, soluzioni per materiali termoplastici</title>
+    <meta name="description" content="Da oltre 50 anni, Speirani & Co. è il partner di fiducia nella distribuzione di materiali termoplastici per acquedottistica, industria, irrigazione e costruzioni.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --speirani-navy: #0A2342;
+            --action-blue: #007BFF;
+            --heritage-gold: #D4A017;
+            --structure-grey: #F0F2F5;
+            --text-dark: #1D1D1F;
+            --text-light: #F0F2F5;
+            --background-dark: #07192E;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--speirani-navy);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            cursor: none;
+        }
+        
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: var(--speirani-navy);
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: var(--action-blue);
+            border-radius: 20px;
+            border: 2px solid var(--speirani-navy);
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--action-blue);
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+        }
+
+        .cursor-dot.hovered {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 123, 255, 0.2);
+            border: 1px solid var(--action-blue);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-light);
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.5rem; }
+        p { margin-bottom: 1rem; }
+
+        a {
+            color: var(--action-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary {
+            background-color: var(--action-blue);
+            color: #fff;
+            border: 2px solid var(--action-blue);
+        }
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--action-blue);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+        }
+        .btn-secondary:hover {
+            background-color: var(--text-light);
+            color: var(--speirani-navy);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--action-blue);
+        }
+
+        .section-title .subtitle {
+            font-size: 1.1rem;
+            color: var(--heritage-gold);
+            font-family: var(--font-heading);
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background-color: rgba(10, 35, 66, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+        }
+        .logo span {
+            color: var(--action-blue);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu li {
+            margin-left: 35px;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--action-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after, .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .lang-switcher {
+            font-family: var(--font-heading);
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        .lang-switcher a { color: var(--text-light); }
+        .lang-switcher .active-lang { color: var(--action-blue); }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--text-light);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            padding: 0;
+            background: linear-gradient(rgba(10, 35, 66, 0.7), rgba(10, 35, 66, 0.9)), url('https://images.unsplash.com/photo-1599818498305-b3a1f9a141b7?q=80&w=2940&auto=format&fit=crop') no-repeat center center/cover;
+            position: relative;
+        }
+        
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, transparent, var(--speirani-navy) 80%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content .subtitle {
+            font-family: var(--font-heading);
+            color: var(--heritage-gold);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .hero-content h1 {
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+            color: var(--structure-grey);
+        }
+
+        .hero-buttons .btn {
+            margin-right: 15px;
+        }
+
+        /* Trust Bar */
+        #trust-bar {
+            background-color: var(--background-dark);
+            padding: 30px 0;
+        }
+        .trust-bar-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+        }
+        .trust-item {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--structure-grey);
+        }
+        .trust-item i {
+            color: var(--heritage-gold);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Sectors Section */
+        #settori { background-color: var(--background-dark); }
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .sector-card {
+            background-color: var(--speirani-navy);
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+        .sector-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.1);
+            border-color: var(--action-blue);
+        }
+        .sector-card .icon {
+            font-size: 3rem;
+            color: var(--action-blue);
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        .sector-card:hover .icon { color: var(--heritage-gold); }
+        .sector-card h3 { color: var(--text-light); margin-bottom: 15px; }
+        .sector-card p { font-size: 0.9rem; color: var(--structure-grey); }
+
+        /* Why Us Section */
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .why-us-item {
+            text-align: center;
+            padding: 30px;
+        }
+        .why-us-item .icon {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            background-color: rgba(0, 123, 255, 0.1);
+            color: var(--action-blue);
+            font-size: 2.5rem;
+            margin: 0 auto 25px auto;
+            transition: all 0.3s ease;
+        }
+        .why-us-item:hover .icon {
+            background-color: var(--action-blue);
+            color: #fff;
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        /* Products Section */
+        #prodotti { background-color: var(--background-dark); }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            background-color: var(--speirani-navy);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+        }
+        .product-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        .product-content { padding: 25px; }
+        .product-content h3 { color: var(--text-light); }
+        .product-content .material {
+            font-size: 0.9rem;
+            color: var(--heritage-gold);
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* About Us Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: var(--action-blue);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .timeline-container.left { left: 0; }
+        .timeline-container.right { left: 50%; }
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12.5px;
+            background-color: var(--speirani-navy);
+            border: 4px solid var(--heritage-gold);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        .timeline-container.right::after { left: -12.5px; }
+        .timeline-container:hover::after {
+            transform: scale(1.2);
+        }
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--background-dark);
+            position: relative;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+        }
+        .timeline-content h3 { color: var(--action-blue); }
+        .timeline-content .year {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--heritage-gold);
+        }
+
+        /* Technical Area */
+        #area-tecnica { background-color: var(--background-dark); }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        .tech-item {
+            padding: 30px;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            border-radius: 8px;
+            background-color: var(--speirani-navy);
+            transition: all 0.3s ease;
+        }
+        .tech-item:hover {
+            border-color: var(--action-blue);
+            transform: translateY(-5px);
+        }
+        .tech-item .icon { font-size: 3rem; color: var(--action-blue); margin-bottom: 20px; }
+        .tech-item h3 { margin-bottom: 15px; }
+        .tech-item a {
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .contact-info h3 { margin-bottom: 20px; color: var(--text-light); }
+        .contact-info p { margin-bottom: 25px; }
+        .contact-info ul { list-style: none; }
+        .contact-info li { display: flex; align-items: flex-start; margin-bottom: 20px; }
+        .contact-info li i {
+            font-size: 1.5rem;
+            color: var(--action-blue);
+            margin-right: 20px;
+            width: 25px;
+            text-align: center;
+            margin-top: 4px;
+        }
+        .contact-form {
+            background-color: var(--background-dark);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--speirani-navy);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 5px;
+            color: var(--text-light);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--action-blue);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--background-dark);
+            padding: 60px 0 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 123, 255, 0.1);
+        }
+        .footer-logo { font-size: 2rem; margin-bottom: 20px; }
+        .footer p { max-width: 500px; margin: 0 auto 30px auto; color: var(--structure-grey); }
+        .social-icons { margin-bottom: 30px; }
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+        .social-icons a:hover {
+            color: var(--action-blue);
+            transform: translateY(-3px);
+        }
+        .copyright {
+            font-size: 0.9rem;
+            color: #aaa;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+        }
+
+        /* Responsive Design */
+        @media(max-width: 992px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+            .container { width: 95%; }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: var(--speirani-navy);
+                width: 100%;
+                height: 100vh;
+                text-align: center;
+                transition: 0.4s;
+                gap: 40px;
+            }
+            .nav-menu.active { left: 0; }
+            .nav-menu li { margin: 0; }
+            .nav-menu a { font-size: 1.2rem; }
+            .hamburger { display: block; }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            .hero-content { text-align: center; }
+            .hero-content p { margin-left: auto; margin-right: auto;}
+            .hero-buttons { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+            .hero-buttons .btn { margin: 0; width: 80%; }
+            .why-us-grid { grid-template-columns: 1fr; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .timeline::after { left: 31px; }
+            .timeline-container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-container.right, .timeline-container.left { left: 0%; }
+            .timeline-container::after { left: 18px; }
+        }
+
+        @media(max-width: 768px) {
+            section { padding: 80px 0; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .trust-bar-content { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor-dot"></div>
+
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#hero" class="logo">SPEIRANI<span>&CO</span></a>
+                <ul class="nav-menu">
+                    <li><a href="#hero" class="active">Home</a></li>
+                    <li><a href="#chi-siamo">Chi Siamo</a></li>
+                    <li><a href="#prodotti">Prodotti</a></li>
+                    <li><a href="#settori">Settori</a></li>
+                    <li><a href="#area-tecnica">Area Tecnica</a></li>
+                    <li><a href="#contatti">Contatti</a></li>
+                    <li class="lang-switcher"><a href="#" class="active-lang">IT</a> | <a href="#">EN</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <div class="hero-content" data-aos="fade-right">
+                    <span class="subtitle">Dal 1969, la solidità dell'esperienza.</span>
+                    <h1>Oltre 50 anni di esperienza nella distribuzione di materiali termoplastici.</h1>
+                    <p>Soluzioni affidabili e certificate per acquedottistica, industria, irrigazione e costruzioni. Il vostro progetto, la nostra competenza.</p>
+                    <div class="hero-buttons">
+                        <a href="#prodotti" class="btn btn-primary">Scopri i Prodotti</a>
+                        <a href="#contatti" class="btn btn-secondary">Richiedi Consulenza</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="trust-bar">
+            <div class="container" data-aos="fade-up">
+                <div class="trust-bar-content">
+                    <div class="trust-item"><i class="fas fa-calendar-alt"></i>Dal 1969</div>
+                    <div class="trust-item"><i class="fas fa-handshake"></i>Partner dei Migliori Marchi</div>
+                    <div class="trust-item"><i class="fas fa-certificate"></i>Certificazioni di Qualità</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="settori">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="subtitle">Precisione e Flusso</span>
+                    <h2>Settori di Applicazione</h2>
+                </div>
+                <div class="sectors-grid">
+                    <div class="sector-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon"><i class="fas fa-water"></i></div>
+                        <h3>Acquedottistica</h3>
+                        <p>Soluzioni complete per reti idriche e di distribuzione, garantendo massima efficienza e durata nel tempo.</p>
+                    </div>
+                    <div class="sector-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon"><i class="fas fa-leaf"></i></div>
+                        <h3>Irrigazione</h3>
+                        <p>Sistemi avanzati per l'agricoltura e il giardinaggio, ottimizzando l'uso delle risorse idriche.</p>
+                    </div>
+                    <div class="sector-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon"><i class="fas fa-industry"></i></div>
+                        <h3>Industria</h3>
+                        <p>Materiali resistenti per impianti industriali, adatti al trasporto di fluidi chimici e aggressivi.</p>
+                    </div>
+                    <div class="sector-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon"><i class="fas fa-building"></i></div>
+                        <h3>Costruzioni</h3>
+                        <p>Prodotti per edilizia, scarichi civili e industriali, fognature e sistemi di drenaggio urbano.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-us">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="subtitle">Il nostro valore aggiunto</span>
+                    <h2>Perché Scegliere Speirani & Co.</h2>
+                </div>
+                <div class="why-us-grid">
+                    <div class="why-us-item" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="icon"><i class="fas fa-star"></i></div>
+                        <h3>Esperienza</h3>
+                        <p>Oltre mezzo secolo di storia nel settore ci permette di comprendere e anticipare le esigenze di ogni progetto, offrendo soluzioni testate e affidabili.</p>
+                    </div>
+                    <div class="why-us-item" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Qualità</h3>
+                        <p>Selezioniamo solo i migliori marchi e prodotti certificati per garantire performance superiori e conformità alle normative più severe.</p>
+                    </div>
+                    <div class="why-us-item" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="icon"><i class="fas fa-headset"></i></div>
+                        <h3>Consulenza</h3>
+                        <p>Non siamo solo fornitori, ma partner tecnici. Il nostro team è a disposizione per supportarvi nella scelta dei materiali più idonei.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="prodotti">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="subtitle">Catalogo completo</span>
+                    <h2>Prodotti in Evidenza</h2>
+                </div>
+                <div class="products-grid">
+                    <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1615874984180-84a43888e224?q=80&w=2940&auto=format&fit=crop')"></div>
+                        <div class="product-content">
+                            <span class="material">PVC-U / PVC-C</span>
+                            <h3>Tubi e Raccordi</h3>
+                            <p>Vasta gamma di tubazioni e raccorderia in PVC per pressione, edilizia e fognatura.</p>
+                        </div>
+                    </div>
+                    <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1620353123999-e2a28178c74b?q=80&w=2832&auto=format&fit=crop')"></div>
+                        <div class="product-content">
+                            <span class="material">PE / PP</span>
+                            <h3>Valvole e Flange</h3>
+                            <p>Valvole a sfera, a farfalla e di non ritorno. Flange e accessori per ogni esigenza di connessione.</p>
+                        </div>
+                    </div>
+                    <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1616199343946-b5143d3a04a3?q=80&w=2940&auto=format&fit=crop')"></div>
+                        <div class="product-content">
+                            <span class="material">PEAD</span>
+                            <h3>Polietilene Alta Densità</h3>
+                            <p>Tubi e raccordi per acquedotti e gasdotti, caratterizzati da elevata resistenza e flessibilità.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="chi-siamo">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="subtitle">La nostra storia</span>
+                    <h2>Dal 1969, una crescita costante</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-container left" data-aos="fade-right">
+                        <div class="timeline-content">
+                            <span class="year">1969</span>
+                            <h3>La Fondazione</h3>
+                            <p>Nasce Speirani & Co. con l'obiettivo di diventare un punto di riferimento nella distribuzione di materiali plastici nel nord Italia.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-container right" data-aos="fade-left">
+                        <div class="timeline-content">
+                            <span class="year">1990s</span>
+                            <h3>Espansione</h3>
+                            <p>Ampliamento del magazzino e della gamma di prodotti, introducendo soluzioni innovative per il settore industriale e dell'acquedottistica.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-container left" data-aos="fade-right">
+                        <div class="timeline-content">
+                            <span class="year">2010s</span>
+                            <h3>Certificazioni</h3>
+                            <p>Ottenimento delle principali certificazioni di qualità, consolidando la nostra reputazione di partner affidabile e competente.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-container right" data-aos="fade-left">
+                        <div class="timeline-content">
+                            <span class="year">Oggi</span>
+                            <h3>Il Futuro</h3>
+                            <p>Continuiamo a investire in tecnologia e formazione per offrire consulenza e prodotti all'avanguardia, pronti per le sfide del domani.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="area-tecnica">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="subtitle">Risorse per professionisti</span>
+                    <h2>Area Tecnica</h2>
+                </div>
+                <div class="tech-grid">
+                    <div class="tech-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon"><i class="fas fa-book"></i></div>
+                        <h3>Cataloghi Prodotti</h3>
+                        <p>Scarica i cataloghi completi dei nostri prodotti per specifiche tecniche dettagliate.</p>
+                        <a href="#">Visualizza <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="tech-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon"><i class="fas fa-file-alt"></i></div>
+                        <h3>Schede Tecniche</h3>
+                        <p>Accedi a tutte le schede tecniche e alle dichiarazioni di performance dei materiali.</p>
+                        <a href="#">Cerca <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="tech-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon"><i class="fas fa-stamp"></i></div>
+                        <h3>Certificazioni</h3>
+                        <p>Consulta le nostre certificazioni di qualità aziendali e di prodotto.</p>
+                        <a href="#">Scopri <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contatti">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="subtitle">Inizia un progetto con noi</span>
+                    <h2>Contattaci</h2>
+                </div>
+                <div class="contact-wrapper">
+                    <div class="contact-info" data-aos="fade-right">
+                        <h3>Richiedi una consulenza o un preventivo</h3>
+                        <p>Il nostro team di esperti è pronto a rispondere alle tue domande e a supportarti nella scelta della soluzione migliore per il tuo progetto. Compila il modulo o contattaci direttamente.</p>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i><div><strong>Indirizzo:</strong><br>Via dell'Industria, 123, 20100 Milano, IT</div></li>
+                            <li><i class="fas fa-phone-alt"></i><div><strong>Telefono:</strong><br><a href="tel:+390212345678">+39 02 1234 5678</a></div></li>
+                            <li><i class="fas fa-envelope"></i><div><strong>Email:</strong><br><a href="mailto:info@speirani.it">info@speirani.it</a></div></li>
+                        </ul>
+                    </div>
+                    <form class="contact-form" data-aos="fade-left">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Nome e Cognome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="company" placeholder="Azienda" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                             <select name="inquiry_type" required>
+                                <option value="" disabled selected>Oggetto della richiesta...</option>
+                                <option value="sales">Richiesta Commerciale</option>
+                                <option value="tech">Supporto Tecnico</option>
+                                <option value="info">Informazioni Generali</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Il tuo messaggio" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Invia Richiesta</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <a href="#hero" class="logo footer-logo">SPEIRANI<span>&CO</span></a>
+            <p>"Dal 1969, la solidità dell'esperienza per i vostri progetti."</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2024 Speirani & Co S.r.l. Tutti i diritti riservati. P.IVA 12345678901 | Design by AI
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // AOS Initialization
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+        });
+
+        // Sticky Header
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Cursor Trail Effect
+        const cursorDot = document.querySelector('.cursor-dot');
+        const hoverables = document.querySelectorAll('a, button, .sector-card, .why-us-item .icon, .product-card, .timeline-container, .tech-item');
+
+        window.addEventListener('mousemove', e => {
+            cursorDot.style.top = `${e.clientY}px`;
+            cursorDot.style.left = `${e.clientX}px`;
+        });
+        
+        hoverables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorDot.classList.add('hovered');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorDot.classList.remove('hovered');
+            });
+        });
+
+        // Active Nav Link on Scroll
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', navHighlighter);
+
+        function navHighlighter() {
+            let scrollY = window.pageYOffset;
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight;
+                const sectionTop = current.offsetTop - 150;
+                let sectionId = current.getAttribute('id');
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelector('.nav-menu a[href*=' + sectionId + ']').classList.add('active');
+                } else {
+                    document.querySelector('.nav-menu a[href*=' + sectionId + ']').classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
